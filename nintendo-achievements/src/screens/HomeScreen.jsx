@@ -2,14 +2,22 @@ import React from 'react';
 import { games } from '../data/mockData';
 import ProgressBar from '../components/ProgressBar';
 
+// 1. Importas la imagen local desde la carpeta assets
+import nintendoLogo from '../assets/n-logo.png'; 
+
 export default function HomeScreen() {
   const recentGames = games.filter(g => g.recent);
 
   return (
     <div className="screen fade-in">
-      <h1 className="header-title">Home</h1>
+      {/* 2. Usas la variable que importaste en el src */}
+      <div className="header-logo-container">
+        <img src={nintendoLogo} alt="Nintendo" className="header-logo" />
+      </div>
       
       <h2 className="section-title">Actividad Reciente</h2>
+      
+      {/* ... el resto del código sigue igual ... */}
       {recentGames.map(game => (
         <div key={`recent-${game.id}`} className="card">
           <img src={game.cover} alt={game.title} className="cover-img" />

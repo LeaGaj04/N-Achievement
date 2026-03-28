@@ -1,18 +1,19 @@
 :root {
-  --nintendo-red: #E60012;
-  --bg-color: #F8F9FA;
-  --card-bg: #FFFFFF;
-  --text-main: #1A1A1A;
-  --text-muted: #666666;
+  --nintendo-red: #E60012; /* El mismo rojo vibrante */
+  --bg-color: #121212; /* Fondo casi negro */
+  --card-bg: #2D2D2D; /* Gris oscuro para las tarjetas */
+  --text-main: #FFFFFF; /* Texto principal blanco */
+  --text-muted: #BBBBBB; /* Texto secundario gris claro */
   --border-radius: 16px;
-  --shadow: 0 4px 12px rgba(0,0,0,0.05);
+  --shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --header-logo-size: 100px; /* Tamaño del logotipo grande */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; }
 
-body { background-color: #E0E0E0; display: flex; justify-content: center; }
+body { background-color: #121212; display: flex; justify-content: center; }
 
-/* Contenedor móvil para ver bien en escritorio */
+/* Contenedor móvil */
 .app-container {
   width: 100%;
   max-width: 414px;
@@ -21,16 +22,27 @@ body { background-color: #E0E0E0; display: flex; justify-content: center; }
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
   padding-bottom: 80px; /* Espacio para el nav */
 }
 
 /* Tipografía y Utilitarios */
 h1, h2, h3 { color: var(--text-main); font-weight: 800; }
 .header-title { padding: 20px; font-size: 28px; color: var(--nintendo-red); }
-.section-title { padding: 0 20px 10px; font-size: 18px; }
+.section-title { padding: 0 20px 10px; font-size: 18px; color: var(--text-main); }
 
-/* Tarjetas */
+/* Estilo para el logotipo del encabezado centrado */
+.header-logo-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 20px; /* Más espacio arriba */
+}
+.header-logo {
+  width: var(--header-logo-size);
+  height: auto;
+}
+
+/* Tarjetas Oscuras */
 .card {
   background: var(--card-bg);
   border-radius: var(--border-radius);
@@ -39,38 +51,46 @@ h1, h2, h3 { color: var(--text-main); font-weight: 800; }
   box-shadow: var(--shadow);
   display: flex;
   gap: 15px;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid transparent;
 }
-.card:active { transform: scale(0.98); }
+.card:active { transform: scale(0.98); box-shadow: 0 2px 6px rgba(0,0,0,0.1); border-color: rgba(255,255,255,0.05); }
 
 .cover-img { width: 60px; height: 80px; border-radius: 8px; object-fit: cover; }
-.card-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.card-title { font-size: 16px; font-weight: bold; margin-bottom: 5px; }
+.card-content { flex: 1; display: flex; flex-direction: column; justify-content: center; color: var(--text-main); }
+.card-title { font-size: 16px; font-weight: bold; margin-bottom: 5px; color: var(--text-main); }
 .card-subtitle { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
 
-/* Barras de progreso */
-.progress-bg { background: #EEE; height: 8px; border-radius: 4px; overflow: hidden; width: 100%; }
+/* Barras de progreso actualizadas para modo oscuro */
+.progress-bg { background: rgba(255,255,255,0.1); height: 8px; border-radius: 4px; overflow: hidden; width: 100%; }
 .progress-fill { background: var(--nintendo-red); height: 100%; border-radius: 4px; transition: width 0.3s ease; }
 
-/* Pestañas (Tabs) */
+/* Pestañas (Tabs) en Modo Oscuro */
 .tabs-container { display: flex; overflow-x: auto; padding: 0 20px 15px; gap: 10px; }
 .tabs-container::-webkit-scrollbar { display: none; }
 .tab-btn {
-  background: var(--card-bg); border: none; padding: 8px 16px; border-radius: 20px;
+  background: rgba(255,255,255,0.05); border: none; padding: 8px 16px; border-radius: 20px;
   font-weight: bold; color: var(--text-muted); box-shadow: var(--shadow); cursor: pointer;
+  transition: background 0.2s;
 }
 .tab-btn.active { background: var(--nintendo-red); color: white; }
 
-/* Logros */
-.achievement-icon { width: 50px; height: 50px; border-radius: 50%; background: #F0F0F0; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-.locked .achievement-icon { filter: grayscale(100%); opacity: 0.5; }
+/* Logros en Modo Oscuro */
+.achievement-icon { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; }
+.locked .achievement-icon { filter: grayscale(100%); opacity: 0.3; }
 
-/* Navegación Inferior */
+/* Barra de búsqueda en Modo Oscuro */
+.search-container { display: flex; background: rgba(255,255,255,0.05); padding: 12px; borderRadius: 16px; boxShadow: var(--shadow); alignItems: center; gap: 10px; }
+.search-input { border: none; outline: none; width: 100%; fontSize: 16px; background: transparent; color: var(--text-main); }
+
+/* Navegación Inferior en Modo Oscuro */
 .bottom-nav {
   position: absolute; bottom: 0; left: 0; width: 100%; height: 70px;
-  background: white; border-top-left-radius: 20px; border-top-right-radius: 20px;
+  background: #1A1A1A; /* Un gris muy oscuro, ligeramente diferente del fondo */
+  border-top-left-radius: 20px; border-top-right-radius: 20px;
   display: flex; justify-content: space-around; align-items: center;
-  box-shadow: 0 -4px 10px rgba(0,0,0,0.05); z-index: 100;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1); z-index: 100;
+  border-top: 1px solid rgba(255,255,255,0.05);
 }
 .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); cursor: pointer; border: none; background: none; }
 .nav-item.active { color: var(--nintendo-red); }
