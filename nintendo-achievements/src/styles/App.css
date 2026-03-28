@@ -136,3 +136,53 @@ h1, h2, h3 { color: var(--text-main); font-weight: 800; }
     grid-template-columns: repeat(2, 1fr); /* 2 columnas iguales */
   }
 }
+
+/* --- ESTILOS DE LOGIN Y BOTONES --- */
+.login-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 15px;
+  color: var(--text-main);
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.login-input:focus {
+  border-color: var(--nintendo-red);
+}
+
+.login-button {
+  background: var(--nintendo-red);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.1s, opacity 0.2s;
+}
+.login-button:active {
+  transform: scale(0.98);
+}
+.login-button:hover {
+  opacity: 0.9;
+}
+
+.logout-button {
+  background: transparent;
+  color: var(--nintendo-red);
+  border: 1px solid var(--nintendo-red);
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.logout-button:hover {
+  background: var(--nintendo-red);
+  color: white;
+}
