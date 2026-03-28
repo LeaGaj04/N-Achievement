@@ -11,19 +11,30 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; }
 
-body { background-color: #121212; display: flex; justify-content: center; }
+body { 
+  background-color: #000; 
+  display: flex; 
+  justify-content: center; 
+  margin: 0;
+  height: 100vh; /* Forzamos a que el body mida exactamente la ventana */
+  overflow: hidden; /* Evitamos el scroll de la página completa */
+}
 
-/* Contenedor móvil */
+/* Contenedor principal responsivo */
 .app-container {
   width: 100%;
-  max-width: 414px;
-  height: 100vh;
+  max-width: 800px; /* Perfecto para Tablets y móviles grandes. Usa 100% si quieres que ocupe todo el monitor */
+  height: 100%; /* Ocupa todo el alto disponible */
   background-color: var(--bg-color);
-  position: relative;
-  overflow-y: auto;
-  overflow-x: hidden;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  padding-bottom: 80px; /* Espacio para el nav */
+  display: flex;
+  flex-direction: column; /* Apila el contenido y la barra uno sobre otro */
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.screen {
+  flex: 1; /* Toma todo el espacio disponible dejando lugar a la barra inferior */
+  overflow-y: auto; /* El scroll ocurre SOLO aquí adentro */
+  padding-bottom: 20px;
 }
 
 /* Tipografía y Utilitarios */
@@ -83,14 +94,21 @@ h1, h2, h3 { color: var(--text-main); font-weight: 800; }
 .search-container { display: flex; background: rgba(255,255,255,0.05); padding: 12px; borderRadius: 16px; boxShadow: var(--shadow); alignItems: center; gap: 10px; }
 .search-input { border: none; outline: none; width: 100%; fontSize: 16px; background: transparent; color: var(--text-main); }
 
-/* Navegación Inferior en Modo Oscuro */
+/* Navegación Inferior Fija */
 .bottom-nav {
-  position: absolute; bottom: 0; left: 0; width: 100%; height: 70px;
-  background: #1A1A1A; /* Un gris muy oscuro, ligeramente diferente del fondo */
-  border-top-left-radius: 20px; border-top-right-radius: 20px;
-  display: flex; justify-content: space-around; align-items: center;
-  box-shadow: 0 -4px 10px rgba(0,0,0,0.1); z-index: 100;
+  /* Eliminamos el position: absolute para usar Flexbox puro */
+  width: 100%; 
+  height: 75px;
+  background: #1A1A1A;
+  border-top-left-radius: 20px; 
+  border-top-right-radius: 20px;
+  display: flex; 
+  justify-content: space-around; 
+  align-items: center;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.2); 
   border-top: 1px solid rgba(255,255,255,0.05);
+  flex-shrink: 0; /* Evita que la barra se comprima si hay mucho contenido */
+  padding-bottom: env(safe-area-inset-bottom); /* Da un margen extra nativo en celulares modernos */
 }
 .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); cursor: pointer; border: none; background: none; }
 .nav-item.active { color: var(--nintendo-red); }
