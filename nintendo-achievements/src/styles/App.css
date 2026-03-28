@@ -113,3 +113,26 @@ h1, h2, h3 { color: var(--text-main); font-weight: 800; }
 .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); cursor: pointer; border: none; background: none; }
 .nav-item.active { color: var(--nintendo-red); }
 .nav-item span { font-size: 10px; margin-top: 4px; font-weight: bold; }
+
+/* --- SISTEMA DE CUADRÍCULA (GRID) PARA JUEGOS --- */
+
+.games-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 columna por defecto (móviles) */
+  gap: 15px; /* Espacio entre tarjetas */
+  padding: 0 20px 20px; /* Padding lateral e inferior */
+}
+
+/* Quitamos el margen individual de las tarjetas cuando están dentro de un grid 
+   porque el 'gap' ya se encarga de separarlas */
+.games-grid .card {
+  margin: 0;
+  height: 100%; /* Hace que todas las tarjetas en la fila midan lo mismo */
+}
+
+/* Cuando la pantalla sea mayor a 600px (Tablets y PC) */
+@media (min-width: 600px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas iguales */
+  }
+}

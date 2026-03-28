@@ -22,7 +22,7 @@ export const games = [
     progress: 65,
     hours: 45,
     status: "jugando",
-    recent: true
+    recent: false
   },
   {
     id: 3,
@@ -40,6 +40,52 @@ export const games = [
     progress: 0,
     hours: 0,
     status: "disponible",
+    recent: false
+  },
+  // --- NUEVOS JUEGOS AÑADIDOS ---
+  {
+    id: 5,
+    title: "Blasphemous",
+    cover: "https://placehold.co/150x200/3f3f46/white?text=Blasphemous",
+    progress: 100,
+    hours: 50,
+    status: "completado",
+    recent: false
+  },
+  {
+    id: 6,
+    title: "Blasphemous 2",
+    cover: "https://placehold.co/150x200/52525b/white?text=Blasphemous+2",
+    progress: 45,
+    hours: 18,
+    status: "jugando",
+    recent: true
+  },
+  {
+    id: 7,
+    title: "Pokémon Fire Red",
+    cover: "https://placehold.co/150x200/ef4444/white?text=Fire+Red",
+    progress: 100,
+    hours: 85,
+    status: "completado",
+    recent: false
+  },
+  {
+    id: 8,
+    title: "Pokémon Pokopia",
+    cover: "https://placehold.co/150x200/3b82f6/white?text=Pokopia",
+    progress: 20,
+    hours: 8,
+    status: "jugando",
+    recent: true
+  },
+  {
+    id: 9,
+    title: "Pokémon Leyendas Arceus",
+    cover: "https://placehold.co/150x200/0ea5e9/white?text=Arceus",
+    progress: 90,
+    hours: 110,
+    status: "jugando",
     recent: false
   }
 ];
