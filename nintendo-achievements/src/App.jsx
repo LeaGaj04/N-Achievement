@@ -13,20 +13,35 @@ import LoginScreen from './screens/LoginScreen';
 function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
-  
-  // NUEVO ESTADO: Guardamos el nombre del usuario logueado
   const [loggedUsername, setLoggedUsername] = useState(''); 
 
-  // Actualizamos handleLogin para que reciba y guarde el nombre
+  // --- NUEVO ESTADO: Datos de perfil (inicializados con valores por defecto) ---
+  const [userProfileData, setUserProfileData] = useState({
+    name: "NintenFan_99", // Este será reemplazado por el login
+    bio: "Completando todo al 100%. ¡Esperando la Switch 2!",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ninten",
+    banner: "https://images.unsplash.com/photo-1612404730960-5c71577fca11?auto=format&fit=crop&q=80&w=800&h=300",
+    dob: "", // Fecha de nacimiento (vacío por defecto)
+    age: "", // Edad
+    country: "", // País
+  });
+
   const handleLogin = (username) => {
     setIsLoggedIn(true);
     setLoggedUsername(username);
+    // Actualizamos el nombre en el perfil también
+    setUserProfileData(prev => ({ ...prev, name: username }));
   };
   
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setLoggedUsername(''); // Borramos el nombre al salir
+    setLoggedUsername(''); 
     setActiveTab('home'); 
+  };
+
+  // --- NUEVA FUNCIÓN: Guardar cambios de perfil ---
+  const handleUpdateProfile = (updatedData) => {
+    setUserProfileData(updatedData);
   };
 
   if (!isLoggedIn) {
@@ -42,8 +57,12 @@ function App() {
       case 'home': return <HomeScreen />;
       case 'search': return <SearchScreen />;
       case 'achievements': return <AchievementsScreen />;
-      // Pasamos el nombre de usuario como propiedad al perfil
-      case 'profile': return <ProfileScreen onLogout={handleLogout} username={loggedUsername} />; 
+      // --- PASAMOS DATOS Y FUNCIÓN AL PERFIL ---
+      case 'profile': return <ProfileScreen 
+                               onLogout={handleLogout} 
+                               profileData={userProfileData} 
+                               onUpdate={handleUpdateProfile}
+                             />; 
       case 'library': return <LibraryScreen />;
       default: return <HomeScreen />;
     }
